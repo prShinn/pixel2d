@@ -1,92 +1,146 @@
- /* ===== CĂN BẢN: reset mặc định trình duyệt ===== */
- * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
- }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
- body {
-     background: #1a1a2e;
-     /* Nền tối kiểu game */
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     min-height: 100vh;
-     font-family: 'Courier New', monospace;
-     color: #eee;
- }
+body {
+    background: #0a0a18;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Courier New', monospace;
+    color: #eee;
+    overflow: hidden;
+    user-select: none;
+}
 
- h1 {
-     font-size: 1.4rem;
-     letter-spacing: 4px;
-     text-transform: uppercase;
-     margin-bottom: 12px;
-     color: #f0c040;
-     /* Màu vàng pixel retro */
-     text-shadow: 2px 2px 0 #8b6914;
- }
+h1 {
+    font-size: 1.1rem;
+    letter-spacing: 5px;
+    color: #f0c040;
+    text-shadow: 2px 2px 0 #7a5010;
+    margin-bottom: 6px;
+}
 
- /* ===== CANVAS: màn hình game chính ===== */
- #gameCanvas {
-     border: 3px solid #f0c040;
-     image-rendering: pixelated;
-     /* Giữ pixel sắc nét khi zoom */
-     cursor: none;
-     /* Ẩn con trỏ khi ở trên canvas */
- }
+#topbar {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 5px;
+}
 
- /* ===== HUD phía dưới ===== */
- #hud {
-     margin-top: 10px;
-     font-size: 0.85rem;
-     color: #aaa;
-     letter-spacing: 2px;
- }
+#topbar span {
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    background: rgba(0, 0, 0, .4);
+    padding: 3px 8px;
+    border: 1px solid #333;
+}
 
- /* ===== Nút điều khiển cảm ứng (mobile) ===== */
- #controls {
-     display: grid;
-     grid-template-columns: repeat(3, 48px);
-     grid-template-rows: repeat(2, 48px);
-     gap: 4px;
-     margin-top: 14px;
- }
+#gameCanvas {
+    border: 3px solid #f0c040;
+    image-rendering: pixelated;
+    display: block;
+}
 
- #controls button {
-     background: #2a2a4e;
-     color: #f0c040;
-     border: 2px solid #f0c040;
-     border-radius: 4px;
-     font-size: 1.2rem;
-     cursor: pointer;
-     user-select: none;
-     -webkit-tap-highlight-color: transparent;
-     transition: background 0.1s;
- }
+#hint {
+    margin-top: 5px;
+    font-size: 0.65rem;
+    color: #555;
+    letter-spacing: 1px;
+    text-align: center;
+}
 
- #controls button:active {
-     background: #f0c040;
-     color: #1a1a2e;
- }
+/* D-pad */
+#dpad {
+    display: grid;
+    grid-template-areas: '. up .' 'left . right' '. down .';
+    grid-template-columns: repeat(3, 42px);
+    grid-template-rows: repeat(3, 42px);
+    gap: 2px;
+    margin-top: 8px;
+}
 
- /* Nút W căn giữa hàng đầu */
- #btn-up {
-     grid-column: 2;
-     grid-row: 1;
- }
+#dpad button {
+    background: #111130;
+    color: #f0c040;
+    border: 1.5px solid #333;
+    border-radius: 4px;
+    font-size: .9rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
 
- #btn-left {
-     grid-column: 1;
-     grid-row: 2;
- }
+#dpad button:active {
+    background: #f0c040;
+    color: #0a0a18;
+}
 
- #btn-down {
-     grid-column: 2;
-     grid-row: 2;
- }
+#btn-u {
+    grid-area: up
+}
 
- #btn-right {
-     grid-column: 3;
-     grid-row: 2;
- }
+#btn-l {
+    grid-area: left
+}
+
+#btn-d {
+    grid-area: down
+}
+
+#btn-r {
+    grid-area: right
+}
+
+/* Bottom row */
+#bottomrow {
+    display: flex;
+    gap: 8px;
+    margin-top: 7px;
+    align-items: center;
+}
+
+#atk-btn {
+    padding: 10px 20px;
+    background: #200010;
+    color: #ff7070;
+    border: 1.5px solid #ff4040;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: .8rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#atk-btn:active {
+    background: #ff4040;
+    color: #fff;
+}
+
+#wpn-btns {
+    display: flex;
+    gap: 3px;
+}
+
+#wpn-btns button {
+    width: 36px;
+    height: 36px;
+    background: #111130;
+    color: #888;
+    border: 1.5px solid #333;
+    border-radius: 4px;
+    font-size: .75rem;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#wpn-btns button.active {
+    border-color: #f0c040;
+    color: #f0c040;
+    background: #1a1a20;
+}

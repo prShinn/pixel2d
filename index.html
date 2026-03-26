@@ -11,19 +11,31 @@
 <body>
 
     <h1>⚔ Pixel World</h1>
+    <div id="topbar">
+        <span id="ui-hp">❤ 100/100</span>
+        <span id="ui-wave">🌊 Wave 1</span>
+        <span id="ui-kill">☠ Kills: 0</span>
+        <span id="ui-wpn">✊ Tay không</span>
+    </div>
+    <canvas id="gameCanvas" width="640" height="420"></canvas>
+    <div id="hint">WASD / ←↑↓→ Di chuyển &nbsp;|&nbsp; J / Space Tấn công &nbsp;|&nbsp; 1-5 Đổi vũ khí &nbsp;|&nbsp; R
+        Restart</div>
 
-    <!-- ===== CANVAS: toàn bộ game được vẽ tại đây ===== -->
-    <canvas id="gameCanvas" width="480" height="320"></canvas>
-
-    <!-- HUD: hiển thị phím tắt -->
-    <div id="hud">WASD hoặc nhấn nút bên dưới để di chuyển</div>
-
-    <!-- Nút cảm ứng cho mobile -->
-    <div id="controls">
-        <button id="btn-up" title="W">▲</button>
-        <button id="btn-left" title="A">◄</button>
-        <button id="btn-down" title="S">▼</button>
-        <button id="btn-right" title="D">►</button>
+    <div id="dpad">
+        <button id="btn-u">▲</button>
+        <button id="btn-l">◄</button>
+        <button id="btn-d">▼</button>
+        <button id="btn-r">►</button>
+    </div>
+    <div id="bottomrow">
+        <button id="atk-btn">⚔ ATTACK</button>
+        <div id="wpn-btns">
+            <button class="active" data-wpn="fist">✊</button>
+            <button data-wpn="sword">⚔</button>
+            <button data-wpn="bow">🏹</button>
+            <button data-wpn="staff">🪄</button>
+            <button data-wpn="wand">⭐</button>
+        </div>
     </div>
 
     <!-- ===== HỮU ÍCH: hướng dẫn dùng ảnh của bạn ===== -->
@@ -36,7 +48,10 @@
          ctx.drawImage(playerSprite, p.x - 16, p.y - 16, 32, 32)
     Lưu ý: ảnh nên là PNG trong suốt, kích thước 32x32 hoặc 64x64
   -->
-    <script src="main.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/monster.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
