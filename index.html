@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pixel Game 2D</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <h1>⚔ Pixel World</h1>
+
+    <!-- ===== CANVAS: toàn bộ game được vẽ tại đây ===== -->
+    <canvas id="gameCanvas" width="480" height="320"></canvas>
+
+    <!-- HUD: hiển thị phím tắt -->
+    <div id="hud">WASD hoặc nhấn nút bên dưới để di chuyển</div>
+
+    <!-- Nút cảm ứng cho mobile -->
+    <div id="controls">
+        <button id="btn-up" title="W">▲</button>
+        <button id="btn-left" title="A">◄</button>
+        <button id="btn-down" title="S">▼</button>
+        <button id="btn-right" title="D">►</button>
+    </div>
+
+    <!-- ===== HỮU ÍCH: hướng dẫn dùng ảnh của bạn ===== -->
+    <!--
+    ĐỂ DÙNG HÌNH ẢNH RIÊNG (thay stickman):
+    1. Thêm thẻ: <img id="playerImg" src="nhan-vat.png" hidden>
+    2. Trong phần "Tải asset" bên dưới, bỏ comment dòng:
+         playerSprite = document.getElementById('playerImg')
+    3. Trong hàm drawPlayer(), thay đoạn vẽ stickman bằng:
+         ctx.drawImage(playerSprite, p.x - 16, p.y - 16, 32, 32)
+    Lưu ý: ảnh nên là PNG trong suốt, kích thước 32x32 hoặc 64x64
+  -->
+    <script src="main.js"></script>
+</body>
+
+</html>

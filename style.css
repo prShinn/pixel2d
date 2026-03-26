@@ -1,0 +1,92 @@
+ /* ===== CĂN BẢN: reset mặc định trình duyệt ===== */
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     background: #1a1a2e;
+     /* Nền tối kiểu game */
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     min-height: 100vh;
+     font-family: 'Courier New', monospace;
+     color: #eee;
+ }
+
+ h1 {
+     font-size: 1.4rem;
+     letter-spacing: 4px;
+     text-transform: uppercase;
+     margin-bottom: 12px;
+     color: #f0c040;
+     /* Màu vàng pixel retro */
+     text-shadow: 2px 2px 0 #8b6914;
+ }
+
+ /* ===== CANVAS: màn hình game chính ===== */
+ #gameCanvas {
+     border: 3px solid #f0c040;
+     image-rendering: pixelated;
+     /* Giữ pixel sắc nét khi zoom */
+     cursor: none;
+     /* Ẩn con trỏ khi ở trên canvas */
+ }
+
+ /* ===== HUD phía dưới ===== */
+ #hud {
+     margin-top: 10px;
+     font-size: 0.85rem;
+     color: #aaa;
+     letter-spacing: 2px;
+ }
+
+ /* ===== Nút điều khiển cảm ứng (mobile) ===== */
+ #controls {
+     display: grid;
+     grid-template-columns: repeat(3, 48px);
+     grid-template-rows: repeat(2, 48px);
+     gap: 4px;
+     margin-top: 14px;
+ }
+
+ #controls button {
+     background: #2a2a4e;
+     color: #f0c040;
+     border: 2px solid #f0c040;
+     border-radius: 4px;
+     font-size: 1.2rem;
+     cursor: pointer;
+     user-select: none;
+     -webkit-tap-highlight-color: transparent;
+     transition: background 0.1s;
+ }
+
+ #controls button:active {
+     background: #f0c040;
+     color: #1a1a2e;
+ }
+
+ /* Nút W căn giữa hàng đầu */
+ #btn-up {
+     grid-column: 2;
+     grid-row: 1;
+ }
+
+ #btn-left {
+     grid-column: 1;
+     grid-row: 2;
+ }
+
+ #btn-down {
+     grid-column: 2;
+     grid-row: 2;
+ }
+
+ #btn-right {
+     grid-column: 3;
+     grid-row: 2;
+ }
