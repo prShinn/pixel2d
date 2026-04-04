@@ -692,6 +692,10 @@
         letter-spacing: 1px;
         flex-shrink: 0;
       }
+      #skill-slots {
+        display: flex;
+        gap: 8px;
+      }
       .skill-slot {
         width: 40px;
         height: 40px;
@@ -1473,6 +1477,7 @@
             id="inp-name"
             placeholder="Nhập pháp danh..."
             maxlength="16"
+            value="shinn"
           />
         </div>
         <div class="field-group">
@@ -1494,8 +1499,8 @@
           </div>
         </div>
         <div class="field-group">
-          <div class="sec-title">✦ PHÂN BỔ THUỘC TÍNH (20 điểm)</div>
-          <div class="pts-disp">Điểm còn lại: <em id="pts-left">20</em></div>
+          <div class="sec-title">✦ PHÂN BỔ THUỘC TÍNH (10 điểm)</div>
+          <div class="pts-disp">Điểm còn lại: <em id="pts-left">10</em></div>
           <div class="stat-grid2">
             <div class="stat-row">
               <span class="stat-icon">⚔</span
@@ -1705,7 +1710,7 @@
           </div>
           <div style="margin-top: 8px">
             <div class="sec-title" style="font-size: 9px; margin-bottom: 4px">
-              ✦ KỸNĂNG (click nâng cấp)
+              ✦ KỸ NĂNG (<span id="tu-skill">0</span>)
             </div>
             <div id="skill-lvl-list"></div>
           </div>
@@ -1983,13 +1988,16 @@
         const lbEl = document.getElementById("load-btn-wrap");
         if (lbEl) {
           if (SaveLoad.hasSave(selectedSlot)) {
-            lbEl.innerHTML = `<button class="load-btn" onclick="loadAndStart()">📂 Tải Game từ Ô ${selectedSlot + 1}</button>`;
+            lbEl.innerHTML = `<button class="load-btn" onclick="loadAndStart()">📂 Tải Game từ Ô ${selectedSlot + 1}</button><br>
+			<button class="load-btn" onclick="deleteGameSaved(selectedSlot)"> Xóa Game từ Ô ${selectedSlot + 1}</button>`;
           } else {
             lbEl.innerHTML = "";
           }
         }
       }
-
+      function deleteGameSaved(slot) {
+        SaveLoad.delete(slot);
+      }
       function loadAndStart() {
         const mapId = SaveLoad.load(selectedSlot);
         if (!mapId) {
@@ -2019,7 +2027,7 @@
       const CFG = {
         TS: 32,
         INV_MAX: 48,
-        ATK_CD: 38,  // thoi gian danh
+        ATK_CD: 38, // thoi gian danh
         REGEN_HP: 0.0006, // hồi máu
         REGEN_MP: 0.0009, // hồi mana
         MON_AGGRO: 4.2,
@@ -2522,14 +2530,14 @@
             atk: 6,
             def: 2,
             xuR: [2, 6],
-            iChance: 0.3,
-            eqChance: 0.1,
+            iChance: 0.03,
+            eqChance: 0.001,
             eqGradeMax: 1,
             speed: 1.0,
             color: "#7a3a1a",
             drops: ["bon", "fur"],
             petDrop: "yd_wolf",
-            petChance: 0.04,
+            petChance: 0.004,
           },
           {
             name: "Linh Hồ",
@@ -2537,14 +2545,14 @@
             atk: 11,
             def: 4,
             xuR: [4, 14],
-            iChance: 0.28,
-            eqChance: 0.12,
+            iChance: 0.028,
+            eqChance: 0.0012,
             eqGradeMax: 1,
             speed: 1.1,
             color: "#cc6020",
             drops: ["fur", "slo"],
             petDrop: "yd_fox",
-            petChance: 0.04,
+            petChance: 0.004,
           },
           {
             name: "Yêu Lang",
@@ -2552,14 +2560,14 @@
             atk: 17,
             def: 8,
             xuR: [8, 24],
-            iChance: 0.25,
-            eqChance: 0.15,
+            iChance: 0.025,
+            eqChance: 0.0015,
             eqGradeMax: 2,
             speed: 1.1,
             color: "#6b2737",
             drops: ["bon", "smi"],
             petDrop: "yd_wolf",
-            petChance: 0.03,
+            petChance: 0.003,
           },
           {
             name: "Linh Xà",
@@ -2567,14 +2575,14 @@
             atk: 14,
             def: 5,
             xuR: [6, 18],
-            iChance: 0.38,
-            eqChance: 0.15,
+            iChance: 0.038,
+            eqChance: 0.0015,
             eqGradeMax: 2,
             speed: 1.2,
             color: "#2d6b2d",
             drops: ["her", "ef"],
             petDrop: "yd_snake",
-            petChance: 0.04,
+            petChance: 0.004,
           },
           {
             name: "Thạch Quỷ",
@@ -2582,8 +2590,8 @@
             atk: 20,
             def: 12,
             xuR: [10, 30],
-            iChance: 0.18,
-            eqChance: 0.18,
+            iChance: 0.018,
+            eqChance: 0.0018,
             eqGradeMax: 3,
             speed: 0.8,
             color: "#5a5a6a",
@@ -2597,14 +2605,14 @@
             atk: 26,
             def: 16,
             xuR: [16, 40],
-            iChance: 0.28,
-            eqChance: 0.2,
+            iChance: 0.028,
+            eqChance: 0.002,
             eqGradeMax: 3,
             speed: 1.2,
             color: "#8a1a3a",
             drops: ["smi", "frag"],
             petDrop: "yd_tiger",
-            petChance: 0.02,
+            petChance: 0.002,
           },
           {
             name: "Hắc Hổ",
@@ -2612,14 +2620,14 @@
             atk: 35,
             def: 22,
             xuR: [22, 55],
-            iChance: 0.22,
-            eqChance: 0.25,
+            iChance: 0.022,
+            eqChance: 0.0025,
             eqGradeMax: 4,
             speed: 1.3,
             color: "#1a1a3a",
             drops: ["shi", "frag"],
             petDrop: "yd_tiger",
-            petChance: 0.03,
+            petChance: 0.003,
           },
           // Elite Boss monsters (ti 7+)
           {
@@ -2628,14 +2636,14 @@
             atk: 55,
             def: 35,
             xuR: [150, 300],
-            iChance: 1.0,
-            eqChance: 1.0,
+            iChance: 0.25,
+            eqChance: 0.5,
             eqGradeMax: 4,
             speed: 0.7,
             color: "#8b0000",
             drops: ["shi", "frag", "bud"],
             petDrop: "yd_phoenix",
-            petChance: 0.15,
+            petChance: 0.015,
             isBoss: true,
           },
           {
@@ -2644,14 +2652,14 @@
             atk: 80,
             def: 50,
             xuR: [300, 600],
-            iChance: 1.0,
-            eqChance: 1.0,
+            iChance: 0.5,
+            eqChance: 0.85,
             eqGradeMax: 5,
             speed: 0.9,
             color: "#ff4400",
             drops: ["shi", "frag", "bud"],
             petDrop: "yd_phoenix",
-            petChance: 0.25,
+            petChance: 0.025,
             isBoss: true,
           },
         ],
@@ -3956,6 +3964,10 @@
             .join("");
         },
         levelUp(idx) {
+          if (S.player.tuSkill == 0) return;
+          S.player.tuSkill--;
+
+          document.getElementById("tu-skill").textContent = S.player.tuSkill;
           const lv = S.skillLevels[idx] || 0;
           if (lv >= CFG.SKILL_MAX_LV) {
             UI.log("Kỹ năng đã đạt MAX!", "system");
@@ -4806,7 +4818,10 @@
           const sb = SectSystem.getBuffs();
           const pb = PetSystem.getBuffs();
           return Math.floor(
-            (10 + S.player.stats.str * 2 + eq.patk) *
+            (10 +
+              S.player.stats.str * 1.3 +
+              S.player.stats.agi * 0.2 +
+              eq.patk) *
               (1 + (sb.atkPct || 0)) *
               (1 + (pb.atkPct || 0)),
           );
@@ -4815,7 +4830,11 @@
           const eq = Equipment.calcEquipStats();
           const sb = SectSystem.getBuffs();
           return Math.floor(
-            2 + S.player.stats.vit * 0.5 + eq.def + (sb.defFlat || 0),
+            2 +
+              S.player.stats.vit * 0.3 +
+              S.player.stats.agi * 0.7 +
+              eq.def +
+              (sb.defFlat || 0),
           );
         },
         pCrit() {
@@ -4938,19 +4957,52 @@
             return;
           }
           p.tuExp -= p.tuNeeded;
+          const gradeBonus = [0.015, 0.035, 0.05]; // 1.5% – 3.5% – 5%
+          p.tuSkillCount++;
+          if (p.tuSkillCount >= 5) {
+            p.tuSkill++;
+            document.getElementById("tu-skill").textContent = p.tuSkill;
+            p.tuSkillCount = 0;
+          }
           if (p.stage < 9) {
+            //Tăng tu vi
             p.stage++;
+            p.stats.str += Math.round(
+              p.stats.str * gradeBonus[p.root.grade] < 1
+                ? 1
+                : p.stats.str * gradeBonus[p.root.grade],
+            );
+            p.stats.agi += Math.round(
+              p.stats.agi * gradeBonus[p.root.grade] < 1
+                ? 1
+                : p.stats.agi * gradeBonus[p.root.grade],
+            );
+            p.stats.vit += Math.round(
+              p.stats.vit * gradeBonus[p.root.grade] < 1
+                ? 1
+                : p.stats.vit * gradeBonus[p.root.grade],
+            );
+            p.stats.int += Math.round(
+              p.stats.int * gradeBonus[p.root.grade] < 1
+                ? 1
+                : p.stats.int * gradeBonus[p.root.grade],
+            );
             UI.log(
               `⚡ PHÁKINH! ${CFG.REALMS[p.realm]} Tầng ${p.stage}!`,
               "level",
             );
           } else if (p.realm < CFG.REALMS.length - 1) {
+            //Phá cảnh
             p.realm++;
             p.stage = 1;
             p.maxHp += 300;
             p.maxMp += 150;
             p.hp = p.maxHp;
             p.mp = p.maxMp;
+            p.stats.str += Math.round(p.stats.str * 0.1);
+            p.stats.agi += Math.round(p.stats.agi * 0.1);
+            p.stats.vit += Math.round(p.stats.vit * 0.1);
+            p.stats.int += Math.round(p.stats.int * 0.1);
             UI.log(
               `🌟 THĂNG CẢNH GIỚI → ${CFG.REALMS[p.realm]} Tầng 1!`,
               "level",
@@ -5809,9 +5861,9 @@
           if (e.code === "Digit3") Skills.use(2);
           if (e.code === "Digit4") Skills.use(3);
           // if (e.code === "KeyA") Cultivation.absorbStone();
-          if (e.code === "KeyB") Cultivation.tryBreakthrough();
+          //   if (e.code === "KeyB") Cultivation.tryBreakthrough();
           if (e.code === "KeyZ") toggleAuto();
-          if (e.code === "KeyM") toggleMeditate();
+          //   if (e.code === "KeyM") toggleMeditate();
           // if (e.code === "KeyS") saveGame();
         });
         window.addEventListener("keyup", (e) => (keys[e.code] = false));
@@ -5951,7 +6003,11 @@
       // §20 · CREATE + START
       // ══════════════════════════════════════════════════════
       let cRoot = null;
-      const cPts = { str: 5, agi: 5, vit: 5, int: 5, remaining: 20 };
+      const cPts = { str: 10, agi: 5, vit: 5, int: 10, remaining: 10 };
+      document.getElementById("cs-str").textContent = cPts.str;
+      document.getElementById("cs-agi").textContent = cPts.agi;
+      document.getElementById("cs-vit").textContent = cPts.vit;
+      document.getElementById("cs-int").textContent = cPts.int;
       function rollRoot() {
         const r = CFG.ROOTS[Math.floor(Math.random() * CFG.ROOTS.length)];
         const gi = Math.floor(Math.random() * 3);
@@ -6023,13 +6079,15 @@
           maxHp: 100 + vit * 10,
           mp: 50 + int_ * 8,
           maxMp: 50 + int_ * 8,
-          xu: 100,
+          xu: 1000000000,
           tuExp: 0,
           tuNeeded: 0,
           x: 26,
           y: 30,
           px: 26 * CFG.TS + CFG.TS / 2,
           py: 30 * CFG.TS + CFG.TS / 2,
+          tuSkill: 0,
+          tuSkillCount: 0,
         };
         S.player.tuNeeded = Cultivation.calcTuNeeded(0, 1);
         S.equipped = {};
