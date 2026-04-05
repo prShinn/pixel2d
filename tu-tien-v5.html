@@ -1741,7 +1741,7 @@
         <button class="qbtn" id="btn-auto" onclick="toggleAuto()">
           ⚔ Tự Động [Z]
         </button>
-        <button class="qbtn" onclick="saveGame()">💾 Lưu [S]</button>
+        <!-- <button class="qbtn" onclick="saveGame()">💾 Lưu [S]</button> -->
         <div
           style="
             margin-left: auto;
@@ -2035,7 +2035,7 @@
         MON_RESPAWN: 400, // time monster hoi sinh
         CRIT_BASE: 0.05, // ty le crit
         CRIT_MULT: 1.8, // dame crit
-        MEDITATE_TU: 0.05, // tu vi per frame during meditation
+        MEDITATE_TU: 0.05, // tu vi per frame during meditation // auto tu luyện
         SKILL_UP_BASE_COST: 2000, // xu per skill level
         SKILL_MAX_LV: 5,
 
@@ -5223,6 +5223,7 @@
         document.getElementById("dialog-modal").classList.add("open");
       }
       function openChest(npc) {
+        return;
         if (npc.used) {
           UI.log("Rương đã trống.", "system");
           return;
@@ -6003,7 +6004,7 @@
       // §20 · CREATE + START
       // ══════════════════════════════════════════════════════
       let cRoot = null;
-      const cPts = { str: 10, agi: 5, vit: 5, int: 10, remaining: 10 };
+      const cPts = { str: 8, agi: 7, vit: 7, int: 8, remaining: 10 };
       document.getElementById("cs-str").textContent = cPts.str;
       document.getElementById("cs-agi").textContent = cPts.agi;
       document.getElementById("cs-vit").textContent = cPts.vit;
@@ -6096,14 +6097,14 @@
         S.sect = null;
         S.quests = [];
         // Starter items
-        Inventory.add(CFG.ITEMS.slo);
-        Inventory.add(CFG.ITEMS.slo);
-        Inventory.add(CFG.ITEMS.hpd);
-        Inventory.add(CFG.ITEMS.hpd);
-        const starterWeapon = Equipment.generate(0);
-        S.equipped["weapon"] = starterWeapon;
-        const starterArmor = Equipment.generate(0);
-        S.equipped["armor"] = starterArmor;
+        // Inventory.add(CFG.ITEMS.slo);
+        // Inventory.add(CFG.ITEMS.slo);
+        // Inventory.add(CFG.ITEMS.hpd);
+        // Inventory.add(CFG.ITEMS.hpd);
+        // const starterWeapon = Equipment.generate(0);
+        // S.equipped["weapon"] = starterWeapon;
+        // const starterArmor = Equipment.generate(0);
+        // S.equipped["armor"] = starterArmor;
         enterGame(
           "town",
           MAPS.town.playerStart.x,
@@ -6137,7 +6138,7 @@
             "level",
           );
           UI.log(
-            "💡 [M] Tu luyện thụ động • [1-4] Kỹ năng • [A] Hấp thạch • [S] Lưu game",
+            "💡 [M] Tu luyện thụ động • [1-4] Kỹ năng • [A] Hấp thạch",
             "system",
           );
           UI.log(
